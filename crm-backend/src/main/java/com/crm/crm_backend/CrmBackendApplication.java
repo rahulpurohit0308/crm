@@ -2,12 +2,13 @@ package com.crm.crm_backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import java.util.TimeZone;
 
 @SpringBootApplication
 public class CrmBackendApplication {
 
 	public static void main(String[] args) {
+		TimeZone.setDefault(TimeZone.getTimeZone("Asia/Kolkata"));
 		SpringApplication.run(CrmBackendApplication.class, args);
 	}
-
 }
