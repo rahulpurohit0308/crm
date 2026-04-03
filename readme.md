@@ -1,178 +1,224 @@
-# 🚀 CRM Application (Customer Relationship Management System)
+# CRM System
 
-A full-stack CRM application designed to manage users, workspaces, leads, contacts, and activities with role-based access control and multi-tenant architecture.
-
----
-
-## 📌 Overview
-
-This CRM system allows users to:
-
-- Create and manage accounts
-- Work within multiple workspaces
-- Manage leads and convert them into contacts
-- Track activities
-- Collaborate with team members using role-based access
-
-The application follows a **modular and scalable architecture**, making it suitable for real-world business use cases.
+A full-stack Customer Relationship Management (CRM) application designed to manage leads, customers, sales pipelines, and team workflows efficiently.
 
 ---
 
-## 🧠 Key Features
+## Overview
 
-### 🔐 Authentication & User Management
-- User registration and login
-- Secure authentication (JWT-based)
-- Password update functionality
-- User profile settings
+This CRM system helps businesses track and manage customer interactions, automate workflows, and improve sales productivity. It provides a centralized platform for handling leads, deals, contacts, and analytics.
 
 ---
 
-### 🏢 Workspace Management
-- Create and manage multiple workspaces
-- Add/remove users to/from workspace
-- Role-based access:
-  - Admin
-  - Member
-- Workspace-level visibility controls
+## Features
+
+### Authentication and Authorization
+
+* Secure login and signup
+* Role-based access control (Admin, Manager, User)
+* Token/session-based authentication
+
+### Lead Management
+
+* Create, update, and delete leads
+* Assign leads to users or groups
+* Track lead status (New, Contacted, Converted, etc.)
+
+### Contact Management
+
+* Maintain customer profiles
+* Store contact details and interaction history
+* Activity tracking
+
+### Sales Pipeline
+
+* Visual pipeline management
+* Deal tracking across stages
+* Revenue estimation and tracking
+
+### Task and Activity Management
+
+* Create and assign tasks
+* Set reminders and deadlines
+* Track user activities
+
+### Dashboard and Analytics
+
+* Sales performance metrics
+* Lead conversion insights
+* Reports and charts
+
+### Notifications
+
+* Real-time alerts
+* Optional email or push notifications
 
 ---
 
-### 📊 Lead Management
-- Create, update, delete leads
-- Lead statuses:
-  - Ongoing
-  - Closed Won
-  - Closed Lost
-- Assign leads to users
-- Filter and view leads by workspace
-
----
-
-### 🤝 Contact Management
-- Convert leads into contacts
-- Manage contact details
-- Maintain relationship between leads and contacts
-
----
-
-### 📝 Activity Tracking
-- Add activities:
-  - Calls
-  - Meetings
-  - Notes
-- Link activities to contacts or leads
-- Maintain activity history
-
----
-
-### 📈 Dashboard
-- View all workspaces
-- View personal leads
-- Quick navigation to core modules
-
----
-
-### ⚙️ Settings
-- User settings (name, email, password)
-- Workspace settings (visibility, roles, configurations)
-
----
-
-## 🏗️ System Design Approach
-
-This project follows a **feature-driven development approach**:
-
-1. High-level functional flow design
-2. Feature-wise breakdown:
-   - Auth Flow
-   - Workspace Flow
-   - Lead Flow
-   - Contact Flow
-   - Activity Flow
-3. Iterative implementation:
-   - Database design
-   - API development
-   - Frontend integration
-
----
-
-## 🗂️ Core Entities
-
-- **User**
-- **Workspace**
-- **UserWorkspace (Mapping + Roles)**
-- **Lead**
-- **Contact**
-- **Activity**
-
----
-
-## 🔗 Relationships
-
-- A user can belong to multiple workspaces
-- A workspace can have multiple users
-- A workspace contains multiple leads
-- A lead can be converted into a contact
-- A contact can have multiple activities
-
----
-
-## ⚙️ Tech Stack
-
-### Backend
-- Java (Spring Boot)
-- REST APIs
-- JWT Authentication
+## Tech Stack
 
 ### Frontend
-- Angular
-- Component-based architecture
-- Reactive forms
+
+* React or Next.js
+* Tailwind CSS or standard CSS
+
+### Backend
+
+* Node.js with Express.js or Spring Boot
+* REST API architecture
 
 ### Database
-- PostgreSQL
+
+* PostgreSQL or MySQL
+* ORM: Prisma, Drizzle, or Hibernate
+
+### DevOps and Tools
+
+* Docker
+* Kubernetes (optional)
+* Cloud platforms such as AWS, Azure, or GCP
 
 ---
 
-## 🔌 API Overview (Sample)
+## Project Structure
 
-### Auth
-- `POST /auth/register`
-- `POST /auth/login`
-
-### Workspace
-- `POST /workspaces`
-- `GET /workspaces`
-
-### Leads
-- `POST /leads`
-- `GET /leads`
-- `PATCH /leads/:id`
-- `DELETE /leads/:id`
-
-### Contacts
-- `POST /contacts`
-- `GET /contacts`
-
-### Activities
-- `POST /activities`
-- `GET /activities`
+```
+crm/
+├── client/            # Frontend application
+├── server/            # Backend APIs
+├── database/          # Schema and migrations
+├── docs/              # Documentation
+├── docker/            # Docker configurations
+└── README.md
+```
 
 ---
 
-## 🚀 Getting Started
+## Installation and Setup
 
-### Prerequisites
-- Java (JDK 21)
-- Node.js
-- PostgreSQL
-- Docker (optional)
+### Clone the repository
+
+```
+git clone https://github.com/your-username/crm.git
+cd crm
+```
+
+### Setup Backend
+
+```
+cd server
+npm install
+npm run dev
+```
+
+### Setup Frontend
+
+```
+cd client
+npm install
+npm run dev
+```
+
+### Environment Variables
+
+Create a `.env` file in both client and server.
+
+#### Backend
+
+```
+PORT=5000
+DATABASE_URL=your_database_url
+JWT_SECRET=your_secret
+```
+
+#### Frontend
+
+```
+NEXT_PUBLIC_API_URL=http://localhost:5000
+```
 
 ---
 
-### Backend Setup
+## Database Design (High-Level)
 
-```bash
-cd crm-backend
-./mvnw spring-boot:run
+* Users
+* Leads
+* Contacts
+* Deals
+* Tasks
+* Activities
+
+---
+
+## API Design (Sample)
+
+| Method | Endpoint     | Description       |
+| ------ | ------------ | ----------------- |
+| POST   | /auth/login  | User login        |
+| POST   | /auth/signup | User registration |
+| GET    | /leads       | Get all leads     |
+| POST   | /leads       | Create a lead     |
+| PUT    | /leads/:id   | Update a lead     |
+| DELETE | /leads/:id   | Delete a lead     |
+
+---
+
+## System Design Highlights
+
+* Modular backend architecture
+* Scalable REST APIs
+* Efficient database querying
+* Optional caching layer (Redis)
+* Containerized deployment support
+
+---
+
+## Deployment
+
+### Using Docker
+
+```
+docker-compose up --build
+```
+
+### Cloud Deployment Options
+
+* AWS (EC2, ECS, Lambda)
+* Azure App Services
+* Google Cloud Platform
+
+---
+
+## Testing
+
+* Unit testing (Jest or JUnit)
+* API testing (Postman or Supertest)
+* Integration testing
+
+---
+
+## Future Enhancements
+
+* AI-based lead scoring
+* Workflow automation
+* Third-party integrations (Slack, Gmail, etc.)
+* Mobile application support
+
+---
+
+## Contributing
+
+Contributions are welcome. Fork the repository and submit a pull request with your changes.
+
+---
+
+## License
+
+This project is licensed under the MIT License.
+
+---
+
+## Author
+
+Rahul Purohit
+GitHub: https://github.com/rahulpurohit0308
