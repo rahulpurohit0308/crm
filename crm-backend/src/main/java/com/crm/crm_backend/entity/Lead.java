@@ -4,15 +4,16 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "contacts")
+@Table(name = "leads")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Contact {
+public class Lead {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,9 +31,19 @@ public class Contact {
 
     private String company;
 
+    @Enumerated(EnumType.STRING)
+    private Stage stage;
+
+    private String source;
+
+    private BigDecimal estimatedValue;
+
+    @Enumerated(EnumType.STRING)
+    private Priority priority;
+
     @ManyToOne
-    @JoinColumn(name = "owner_id")
-    private User owner;
+    @JoinColumn(name = "assigned_to")
+    private User assignedTo;
 
     @ManyToOne
     @JoinColumn(name = "workspace_id", nullable = false)
@@ -41,4 +52,16 @@ public class Contact {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
+    public enum Stage {
+        NEW,
+        CONTACTED,
+        QUALIFIED,
+        LOST
+    }
+
+    public enum Priority {
+        LOW,
+        MEDIUM,
+        HIGH
+    }
 }

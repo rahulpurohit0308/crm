@@ -2,17 +2,18 @@ package com.crm.crm_backend.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.List;
 import org.hibernate.annotations.CreationTimestamp;
+
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
-@Table(name = "users")
+@Table(name = "workspaces")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User {
+public class Workspace {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,13 +22,11 @@ public class User {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false, unique = true)
-    private String email;
+    @ManyToOne
+    @JoinColumn(name = "created_by", nullable = false)
+    private User createdBy;
 
-    @Column(nullable = false)
-    private String password;
-
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "workspace")
     private List<WorkspaceUser> workspaceUsers;
 
     @CreationTimestamp

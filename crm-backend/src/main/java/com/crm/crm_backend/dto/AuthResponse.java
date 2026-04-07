@@ -1,5 +1,6 @@
 package com.crm.crm_backend.dto;
 
+import com.crm.crm_backend.entity.WorkspaceUser;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -9,5 +10,5 @@ public class AuthResponse {
     private String token;
     private String email;
     private String name;
-    private String role;
+    private WorkspaceUser.Role role;
 }

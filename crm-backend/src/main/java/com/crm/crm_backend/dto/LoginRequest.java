@@ -5,10 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class AuthRequest {
-
-    @NotBlank(message = "Name is required")
-    private String name;
+public class LoginRequest {
 
     @Email(message = "Invalid email")
     @NotBlank(message = "Email is required")
@@ -16,6 +13,4 @@ public class AuthRequest {
 
     @NotBlank(message = "Password is required")
     private String password;
-
-    private String role;
 }

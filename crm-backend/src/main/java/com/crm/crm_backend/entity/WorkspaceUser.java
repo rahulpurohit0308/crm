@@ -7,38 +7,34 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "contacts")
+@Table(name = "workspace_users")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Contact {
+public class WorkspaceUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String firstName;
-
-    private String lastName;
-
-    @Column(nullable = false)
-    private String email;
-
-    private String phone;
-
-    private String company;
-
-    @ManyToOne
-    @JoinColumn(name = "owner_id")
-    private User owner;
-
     @ManyToOne
     @JoinColumn(name = "workspace_id", nullable = false)
     private Workspace workspace;
 
-    @CreationTimestamp
-    private LocalDateTime createdAt;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
+
+    @CreationTimestamp
+    private LocalDateTime joinedAt;
+
+    public enum Role {
+        ADMIN,
+        MEMBER
+    }
 }
